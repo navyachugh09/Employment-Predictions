@@ -1,10 +1,10 @@
 Quick start:
 
-in terminal;
-npm install
-npm start
+in terminal:
+-npm install
+-npm start
 
-Open [http://localhost:3000](http://localhost:3000)
+Open (http://localhost:3000)
 
 Optional: regenerate cleaned data
 venv\Scripts\Activate.ps1
