@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victorian Employment Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Victorian Employment Dashboard</h1>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Overview</h2>
+      <p>
+        Regional overview of total new workers expected by 2035
+      </p>
+    </section>
+
+    <section class="kpi-grid">
+      <div class="card kpi-card">
+        <h3>Total Regions</h3>
+        <p id="totalRegions">-</p>
+      </div>
+
+      <div class="card kpi-card">
+        <h3>Total New Workers by 2035</h3>
+        <p id="totalNewWorkers">-</p>
+      </div>
+
+      <div class="card kpi-card">
+        <h3>Highest Region</h3>
+        <p id="topRegion">-</p>
+      </div>
+    </section>
+
+    <section class="card chart-card">
+      <h2>Regional Demand Overview</h2>
+      <canvas id="employmentChart"></canvas>
+    </section>
+  </main>
+
+  <script src="/dashboard.js"></script>
+</body>
+</html>

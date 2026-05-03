@@ -1,0 +1,43 @@
+{
+  "title": "Total New Workers Expected in 2035 by Region",
+  "summary": {
+    "totalRegions": 15,
+    "totalNewWorkers": 1454031,
+    "topRegion": "Inner metropolitan",
+    "topRegionValue": 331526
+  },
+  "labels": [
+    "Barwon",
+    "Central Highlands",
+    "Eastern metropolitan",
+    "Gippsland",
+    "Goulburn",
+    "Great South Coast",
+    "Inner metropolitan",
+    "Inner south-east",
+    "Loddon Campaspe",
+    "Mallee",
+    "Northern metropolitan",
+    "Ovens Murray",
+    "Southern metropolitan",
+    "Western metropolitan",
+    "Wimmera Southern Mallee"
+  ],
+  "values": [
+    73240,
+    37354,
+    159597,
+    44571,
+    18392,
+    14452,
+    331526,
+    88561,
+    38523,
+    12119,
+    202198,
+    22337,
+    185019,
+    219640,
+    6502
+  ]
+}
