@@ -16,8 +16,22 @@
     <section class="card">
       <h2>Overview</h2>
       <p>
-        Regional overview of total new workers expected by 2035
+        Regional overview of employment projections from the cleaned dataset
       </p>
+    </section>
+
+    <section class="card">
+      <h2>Filters</h2>
+      <div class="filters">
+        <div class="filter-group">
+          <label for="metricSelect">Metric</label>
+          <select id="metricSelect"></select>
+        </div>
+        <div class="filter-group">
+          <label for="industrySelect">Industry</label>
+          <select id="industrySelect"></select>
+        </div>
+      </div>
     </section>
 
     <section class="kpi-grid">
@@ -27,8 +41,8 @@
       </div>
 
       <div class="card kpi-card">
-        <h3>Total New Workers by 2035</h3>
-        <p id="totalNewWorkers">-</p>
+        <h3 id="metricTitle">Total Metric</h3>
+        <p id="totalMetric">-</p>
       </div>
 
       <div class="card kpi-card">
