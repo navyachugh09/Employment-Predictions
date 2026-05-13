@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victorian Employment Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Victorian Employment Dashboard</h1>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Overview</h2>
+      <p>
+        Regional overview of employment projections from the cleaned dataset
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Filters</h2>
+      <div class="filters">
+        <div class="filter-group">
+          <label for="metricSelect">Metric</label>
+          <select id="metricSelect"></select>
+        </div>
+        <div class="filter-group">
+          <label for="industrySelect">Industry</label>
+          <select id="industrySelect"></select>
+        </div>
+      </div>
+    </section>
+
+    <section class="kpi-grid">
+      <div class="card kpi-card">
+        <h3>Total Regions</h3>
+        <p id="totalRegions">-</p>
+      </div>
+
+      <div class="card kpi-card">
+        <h3 id="metricTitle">Total Metric</h3>
+        <p id="totalMetric">-</p>
+      </div>
+
+      <div class="card kpi-card">
+        <h3>Highest Region</h3>
+        <p id="topRegion">-</p>
+      </div>
+    </section>
+
+    <section class="card chart-card">
+      <h2>Regional Demand Overview</h2>
+      <canvas id="employmentChart"></canvas>
+    </section>
+  </main>
+
+  <script src="/dashboard.js"></script>
+</body>
+</html>

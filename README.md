@@ -1,8 +1,8 @@
 Quick start:
 
 in terminal:
--npm install
--npm start
+->npm install
+->npm start
 
 Open (http://localhost:3000)
 
