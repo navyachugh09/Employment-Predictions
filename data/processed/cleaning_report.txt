@@ -1,0 +1,55 @@
+================================================================
+YOUTUBE CLEANING REPORT
+Generated: 2026-05-20 12:25
+================================================================
+
+--- COMMENTS ---
+Total clean rows: 1960
+AU-relevant:      803 (41.0%)
+
+Per occupation:
+                          rows au_pct  avg_words
+occupation                                      
+aged_and_disabled_carers    53    72%         31
+commercial_cleaners        407    37%         19
+education_aides             87     3%         24
+motor_mechanics            401    20%         39
+registered_nurses          327    69%         27
+sales_assistants           685    44%         28
+
+Year distribution:
+year
+2014      5
+2015      2
+2016      1
+2017      2
+2019      1
+2020      3
+2021    116
+2022    122
+2023    196
+2024    327
+2025    757
+2026    428
+
+--- TRANSCRIPTS ---
+Total transcripts: 79
+AU-relevant:       49 (62.0%)
+
+Per occupation:
+                          videos  total_words au_pct
+occupation                                          
+aged_and_disabled_carers      19        27890    74%
+commercial_cleaners           13         5072    54%
+education_aides                8         5662    25%
+motor_mechanics               11         6906    45%
+registered_nurses             15        13254    93%
+sales_assistants              13        14442    54%
+
+--- ARIMA FEASIBILITY (comments ≥24 months) ---
+  ✅ aged_and_disabled_carers: 32 months, 53 comments
+  ✅ sales_assistants: 55 months, 685 comments
+  ✅ registered_nurses: 38 months, 327 comments
+  ✅ commercial_cleaners: 43 months, 407 comments
+  ✅ education_aides: 39 months, 87 comments
+  ✅ motor_mechanics: 26 months, 401 comments
