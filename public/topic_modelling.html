@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  >
+
+  <title>
+    Topic Modelling – Victorian Employment Projections Dashboard
+  </title>
+
+  <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <link
+    rel="shortcut icon"
+    href="assets/images/favicon.png"
+  />
+
+  <style>
+
+    .topic-chip {
+
+      display: inline-block;
+
+      background: #f0f4ff;
+
+      color: #3b5bdb;
+
+      border-radius: 20px;
+
+      padding: 4px 14px;
+
+      margin: 3px;
+
+      font-size: 12.5px;
+
+      font-weight: 500;
+
+      border: 1px solid #c5d0fa;
+    }
+
+    .occupation-selector select {
+
+      font-size: 1.05rem;
+
+      font-weight: 600;
+
+      padding: 12px;
+
+      color: #fff;
+
+      background-color: transparent;
+    }
+
+    .occupation-selector select option {
+
+      color: #1f2937;
+
+      background-color: #fff;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="container-scroller">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+
+      <a
+        class="sidebar-brand brand-logo text-white text-decoration-none fw-bold"
+        href="index.html"
+      >
+        VICDASH
+      </a>
+
+      <a
+        class="sidebar-brand brand-logo-mini text-white text-decoration-none fw-bold"
+        href="index.html"
+      >
+        VIC
+      </a>
+
+    </div>
+
+    <ul class="nav">
+
+      <li class="nav-item nav-category">
+        <span class="nav-link">
+          Navigation
+        </span>
+      </li>
+
+      <li class="nav-item menu-items">
+
+        <a class="nav-link" href="index.html">
+
+          <span class="menu-icon">
+            <i class="mdi mdi-speedometer"></i>
+          </span>
+
+          <span class="menu-title">
+            Overview
+          </span>
+
+        </a>
+
+      </li>
+
+      <!-- TOPIC MODELLING TAB -->
+      <li class="nav-item menu-items active">
+
+        <a
+          class="nav-link active"
+          href="topic_modelling.html"
+        >
+
+          <span class="menu-icon">
+            <i class="mdi mdi-chart-bubble"></i>
+          </span>
+
+          <span class="menu-title">
+            Topic Modelling
+          </span>
+
+        </a>
+
+      </li>
+
+    </ul>
+
+  </nav>
+
+  <!-- PAGE WRAPPER -->
+  <div class="container-fluid page-body-wrapper">
+
+    <!-- NAVBAR -->
+    <nav class="navbar p-0 fixed-top d-flex flex-row">
+
+      <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+
+        <a
+          class="navbar-brand brand-logo-mini"
+          href="index.html"
+        >
+          <img
+            src="assets/images/logo-mini.svg"
+            alt="logo"
+          />
+        </a>
+
+      </div>
+
+      <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+
+        <button
+          class="navbar-toggler navbar-toggler align-self-center"
+          type="button"
+          data-toggle="minimize"
+        >
+          <span class="mdi mdi-menu"></span>
+        </button>
+
+      </div>
+
+    </nav>
+
+    <!-- MAIN PANEL -->
+    <div class="main-panel">
+
+      <div class="content-wrapper">
+
+        <!-- PAGE HEADER -->
+        <div class="row mb-3">
+
+          <div class="col-12">
+
+            <h4 class="mb-2">
+              What Are The Types of Occupation that People are Discussing?
+            </h4>
+
+            <p
+              class="text-muted mb-2"
+              style="font-size:13px;"
+            >
+              Topic modelling identifies the main occupations people are discussing online.
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- OCCUPATION SELECTOR -->
+        <div class="row mb-4">
+
+          <div class="col-md-8 mx-auto grid-margin stretch-card">
+
+            <div class="card occupation-selector">
+
+              <div class="card-body">
+
+                <label
+                  for="occupationSelect"
+                  class="form-label"
+                  style="font-size:13px; color:#6b7280;"
+                >
+                  Select an occupation
+                </label>
+
+                <select
+                  id="occupationSelect"
+                  class="form-control"
+                ></select>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- TOPIC CARDS -->
+        <div class="row">
+
+          <div class="col-12 grid-margin stretch-card">
+
+            <div class="card">
+
+              <div class="card-body">
+
+                <h4
+                  class="card-title mb-4"
+                  id="topicTitle"
+                >
+                  Topic Modelling
+                </h4>
+
+                <div id="topicsContainer"></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- WORDCLOUD -->
+        <div class="row">
+
+          <div class="col-12 grid-margin stretch-card">
+
+            <div class="card">
+
+              <div class="card-body">
+
+                <h4 class="card-title mb-4">
+                  Topic WordClouds
+                </h4>
+
+                <img
+                  id="wordcloudImage"
+                  src="assets/images/all_occupation_wordclouds.png"
+                  class="img-fluid rounded"
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <footer class="footer">
+
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">
+            Victorian Employment Projections Dashboard
+          </span>
+
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+            Data source: YouTube public discussion
+          </span>
+
+        </div>
+
+      </footer>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+
+<script src="assets/js/off-canvas.js"></script>
+
+<script src="assets/js/hoverable-collapse.js"></script>
+
+<script src="assets/js/misc.js"></script>
+
+<script src="assets/js/settings.js"></script>
+
+<script src="topic_modelling.js"></script>
+
+</body>
+</html>
+
