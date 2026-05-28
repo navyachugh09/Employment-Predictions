@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sentiment Analysis – Victorian Employment Projections Dashboard</title>
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <style>
+      .sentiment-label {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+      .label-positive { color: #16a34a; }
+      .label-mixed    { color: #6b7280; }
+      .label-negative { color: #dc2626; }
+
+      .direction-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+      }
+      .dir-improving { background: #d4f6e6; color: #1a7a45; }
+      .dir-worsening { background: #fde8e8; color: #b91c1c; }
+      .dir-flat      { background: #f1f5f9; color: #475569; }
+
+      .tier-badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+      }
+      .tier-high { background: #d4f6e6; color: #1a7a45; }
+      .tier-low  { background: #fde8e8; color: #b91c1c; }
+
+      .topic-chip {
+        display: inline-block;
+        background: #f0f4ff;
+        color: #3b5bdb;
+        border-radius: 20px;
+        padding: 4px 14px;
+        margin: 3px;
+        font-size: 12.5px;
+        font-weight: 500;
+        border: 1px solid #c5d0fa;
+      }
+
+      .stacked-bar-wrap { height: 24px; border-radius: 6px; overflow: hidden; display: flex; }
+      .stacked-pos { background: #16a34a; }
+      .stacked-neu { background: #d1d5db; }
+      .stacked-neg { background: #dc2626; }
+
+      .source-note {
+        background: #f8fafc;
+        border-left: 3px solid #3b5bdb;
+        padding: 8px 14px;
+        border-radius: 4px;
+        font-size: 12.5px;
+        color: #475569;
+      }
+
+      .occupation-selector select {
+        font-size: 1.05rem;
+        font-weight: 600;
+        padding: 12px;
+        color: #fff;
+        background-color: transparent;
+      }
+      .occupation-selector select option,
+      .occupation-selector select optgroup {
+        color: #1f2937;
+        background-color: #fff;
+      }
+
+      .comparison-card {
+        cursor: pointer;
+        transition: transform 0.1s, box-shadow 0.1s;
+      }
+      .comparison-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      }
+
+      #trendChart {
+        max-height: 360px;
+      }
+
+      .chart-help {
+        font-size: 11.5px;
+        color: #9ca3af;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-scroller">
+
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+          <a class="sidebar-brand brand-logo text-white text-decoration-none fw-bold" href="index.html">VICDASH</a>
+          <a class="sidebar-brand brand-logo-mini text-white text-decoration-none fw-bold" href="index.html">VIC</a>
+        </div>
+        <ul class="nav">
+          <li class="nav-item nav-category"><span class="nav-link">Navigation</span></li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="index.html">
+              <span class="menu-icon"><i class="mdi mdi-speedometer"></i></span>
+              <span class="menu-title">Overview</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-icon"><i class="mdi mdi-laptop"></i></span>
+              <span class="menu-title">Geographic Overview</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="pages/forms/basic_elements.html">
+              <span class="menu-icon"><i class="mdi mdi-playlist-play"></i></span>
+              <span class="menu-title">Industry Overview</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="pages/tables/basic-table.html">
+              <span class="menu-icon"><i class="mdi mdi-table-large"></i></span>
+              <span class="menu-title">Occupation Overview</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items active">
+            <a class="nav-link active" href="sentiment.html">
+              <span class="menu-icon"><i class="mdi mdi-emoticon-outline"></i></span>
+              <span class="menu-title">Sentiment Analysis</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="pages/icons/mdi.html">
+              <span class="menu-icon"><i class="mdi mdi-contacts"></i></span>
+              <span class="menu-title">Methodology</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+          </div>
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="mdi mdi-menu"></span>
+            </button>
+            <ul class="navbar-nav w-100">
+              <li class="nav-item w-100">
+                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                  <input type="text" class="form-control" placeholder="Search regions, industries, occupations">
+                </form>
+              </li>
+            </ul>
+            <ul class="navbar-nav navbar-nav-right"></ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-format-line-spacing"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- partial -->
+
+        <div class="main-panel">
+          <div class="content-wrapper">
+
+            <!-- Page header -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <h4 class="mb-2">How Do People Feel About Each Occupation?</h4>
+                <p class="text-muted mb-2" style="font-size:13px;">
+                  Sentiment measures how positively or negatively people talk about each job in online discussion.
+                  <a href="pages/icons/mdi.html" style="color:#3b5bdb;">Method details on the Methodology page.</a>
+                </p>
+                <div class="source-note">
+                  <i class="mdi mdi-information-outline me-1"></i>
+                  Based on public YouTube discussion. English-language; <strong>not limited to Victorian users.</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Occupation selector -->
+            <div class="row mb-3">
+              <div class="col-md-8 mx-auto grid-margin stretch-card">
+                <div class="card occupation-selector">
+                  <div class="card-body">
+                    <label for="occupationSelect" class="form-label" style="font-size:13px; color:#6b7280;">
+                      Select an occupation
+                    </label>
+                    <select id="occupationSelect" class="form-control"></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- HERO: Sentiment Over Time -->
+            <div class="row">
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap align-items-start justify-content-between mb-3">
+                      <div>
+                        <h4 class="card-title mb-1" id="trendTitle">Sentiment Over Time</h4>
+                        <p class="text-muted mb-0" style="font-size:12.5px;">
+                          Monthly average of how positively or negatively people are discussing this occupation.
+                        </p>
+                        <p class="chart-help mb-0">
+                          Green values indicate positive discussion; red values indicate negative discussion. The grey dashed line represents mixed/neutral sentiment.
+                        </p>
+                      </div>
+                      <div id="directionPill" class="mt-2 mt-md-0"></div>
+                    </div>
+                    <div style="position: relative; height: 360px;">
+                      <canvas id="trendChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Summary KPI row (3 cards, no comment count) -->
+            <div class="row">
+              <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="text-muted font-weight-normal">Overall Sentiment</h6>
+                    <div class="sentiment-label" id="overallLabel">--</div>
+                    <div class="mt-2" id="tierBadgeWrap"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="text-muted font-weight-normal">% Positive Comments</h6>
+                    <h3 class="mb-2 text-success" id="kpiPos">--</h3>
+                    <div class="stacked-bar-wrap" style="height:8px;">
+                      <div class="stacked-pos" id="kpiPosBar" style="width:0%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="text-muted font-weight-normal">% Negative Comments</h6>
+                    <h3 class="mb-2 text-danger" id="kpiNeg">--</h3>
+                    <div class="stacked-bar-wrap" style="height:8px;">
+                      <div class="stacked-neg" id="kpiNegBar" style="width:0%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sentiment breakdown bar -->
+            <div class="row">
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Comment Breakdown</h4>
+                    <p class="text-muted mb-3" style="font-size:12.5px;">
+                      What share of comments lean positive, mixed, or negative.
+                    </p>
+                    <div class="stacked-bar-wrap" id="breakdownBar" style="height:34px;"></div>
+                    <div class="d-flex mt-2" style="font-size:12px; gap:18px;">
+                      <span><span class="d-inline-block" style="width:10px; height:10px; background:#16a34a; border-radius:2px; margin-right:4px;"></span><span id="legendPos">Positive --%</span></span>
+                      <span><span class="d-inline-block" style="width:10px; height:10px; background:#d1d5db; border-radius:2px; margin-right:4px;"></span><span id="legendNeu">Mixed --%</span></span>
+                      <span><span class="d-inline-block" style="width:10px; height:10px; background:#dc2626; border-radius:2px; margin-right:4px;"></span><span id="legendNeg">Negative --%</span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- High vs declining comparison -->
+            <div class="row">
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">All Occupations Compared</h4>
+                    <p class="text-muted mb-3" style="font-size:12.5px;">
+                      Click any occupation to drill in.
+                    </p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h6 class="text-success mb-3"><i class="mdi mdi-trending-up me-1"></i>More Positive Discussion</h6>
+                        <div id="top3Cards"></div>
+                      </div>
+                      <div class="col-md-6">
+                        <h6 class="text-danger mb-3"><i class="mdi mdi-trending-down me-1"></i>More Negative Discussion</h6>
+                        <div id="bottom3Cards"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Victorian Employment Projections Dashboard</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Data source: YouTube public discussion</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="sentiment.js"></script>
+  </body>
+</html>
