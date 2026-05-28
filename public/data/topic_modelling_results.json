@@ -1,0 +1,320 @@
+[
+    {
+        "occupation": "aged_and_disabled_carers",
+        "topics": [
+            {
+                "topic_id": 1,
+                "label": "Other",
+                "keywords": [
+                    "needs",
+                    "bed",
+                    "age",
+                    "youll",
+                    "talk",
+                    "assessment",
+                    "abn",
+                    "apply",
+                    "important",
+                    "business"
+                ]
+            },
+            {
+                "topic_id": 2,
+                "label": "Workforce management & operations",
+                "keywords": [
+                    "organization",
+                    "risk",
+                    "having",
+                    "workforce",
+                    "understand",
+                    "aged",
+                    "approach",
+                    "management",
+                    "safety",
+                    "looking"
+                ]
+            },
+            {
+                "topic_id": 3,
+                "label": "Employment & migration",
+                "keywords": [
+                    "carer",
+                    "age",
+                    "caring",
+                    "visa",
+                    "stress",
+                    "home",
+                    "best",
+                    "respite",
+                    "employer",
+                    "experience"
+                ]
+            }
+        ]
+    },
+    {
+        "occupation": "sales_assistants",
+        "topics": [
+            {
+                "topic_id": 1,
+                "label": "Retail & customer service",
+                "keywords": [
+                    "retail",
+                    "store",
+                    "mate",
+                    "tell",
+                    "experience",
+                    "customer",
+                    "manager",
+                    "clients",
+                    "ask",
+                    "ill"
+                ]
+            },
+            {
+                "topic_id": 2,
+                "label": "Retail & customer service",
+                "keywords": [
+                    "customer",
+                    "store",
+                    "file",
+                    "order",
+                    "whats",
+                    "days",
+                    "questions",
+                    "saying",
+                    "check",
+                    "did"
+                ]
+            },
+            {
+                "topic_id": 3,
+                "label": "Retail & customer service",
+                "keywords": [
+                    "retail",
+                    "online",
+                    "stores",
+                    "cool",
+                    "start",
+                    "getting",
+                    "trying",
+                    "big",
+                    "build",
+                    "roles"
+                ]
+            }
+        ]
+    },
+    {
+        "occupation": "registered_nurses",
+        "topics": [
+            {
+                "topic_id": 1,
+                "label": "Health & social services",
+                "keywords": [
+                    "nursing",
+                    "healthcare",
+                    "career",
+                    "clinical",
+                    "shift",
+                    "role",
+                    "youll",
+                    "higher",
+                    "doctors",
+                    "experience"
+                ]
+            },
+            {
+                "topic_id": 2,
+                "label": "Health & social services",
+                "keywords": [
+                    "nursing",
+                    "clinical",
+                    "year",
+                    "little",
+                    "placement",
+                    "workforce",
+                    "pandemic",
+                    "ill",
+                    "student",
+                    "whats"
+                ]
+            },
+            {
+                "topic_id": 3,
+                "label": "Health & social services",
+                "keywords": [
+                    "high",
+                    "sort",
+                    "important",
+                    "feel",
+                    "nursing",
+                    "better",
+                    "life",
+                    "strong",
+                    "worth",
+                    "cost"
+                ]
+            }
+        ]
+    },
+    {
+        "occupation": "commercial_cleaners",
+        "topics": [
+            {
+                "topic_id": 1,
+                "label": "Cleaning & maintenance",
+                "keywords": [
+                    "clean",
+                    "hours",
+                    "week",
+                    "money",
+                    "site",
+                    "experience",
+                    "easy",
+                    "production",
+                    "free",
+                    "wage"
+                ]
+            },
+            {
+                "topic_id": 2,
+                "label": "Cleaning & maintenance",
+                "keywords": [
+                    "business",
+                    "clean",
+                    "start",
+                    "service",
+                    "number",
+                    "way",
+                    "end",
+                    "ask",
+                    "facility",
+                    "learn"
+                ]
+            },
+            {
+                "topic_id": 3,
+                "label": "Employment & migration",
+                "keywords": [
+                    "year",
+                    "accommodation",
+                    "average",
+                    "visa",
+                    "days",
+                    "foreign",
+                    "dollar",
+                    "areas",
+                    "rooms",
+                    "available"
+                ]
+            }
+        ]
+    },
+    {
+        "occupation": "education_aides",
+        "topics": [
+            {
+                "topic_id": 1,
+                "label": "Education & training",
+                "keywords": [
+                    "youve",
+                    "teachers",
+                    "education",
+                    "school",
+                    "progression",
+                    "kids",
+                    "aid",
+                    "hour",
+                    "life",
+                    "career"
+                ]
+            },
+            {
+                "topic_id": 2,
+                "label": "Education & training",
+                "keywords": [
+                    "teacher",
+                    "teaching",
+                    "learning",
+                    "assistant",
+                    "class",
+                    "pupils",
+                    "school",
+                    "child",
+                    "lesson",
+                    "needs"
+                ]
+            },
+            {
+                "topic_id": 3,
+                "label": "Other",
+                "keywords": [
+                    "fun",
+                    "kids",
+                    "levels",
+                    "interview",
+                    "learned",
+                    "engaged",
+                    "ideas",
+                    "ways",
+                    "worked",
+                    "children helping"
+                ]
+            }
+        ]
+    },
+    {
+        "occupation": "motor_mechanics",
+        "topics": [
+            {
+                "topic_id": 1,
+                "label": "Other",
+                "keywords": [
+                    "automotive",
+                    "vehicle",
+                    "years",
+                    "better",
+                    "mechanic",
+                    "heavy",
+                    "course",
+                    "light",
+                    "making",
+                    "stuff"
+                ]
+            },
+            {
+                "topic_id": 2,
+                "label": "Other",
+                "keywords": [
+                    "battery",
+                    "start",
+                    "let",
+                    "push",
+                    "oil",
+                    "bring",
+                    "wire",
+                    "pull",
+                    "ignition",
+                    "try"
+                ]
+            },
+            {
+                "topic_id": 3,
+                "label": "Other",
+                "keywords": [
+                    "battery",
+                    "vehicle",
+                    "motor",
+                    "high",
+                    "electric",
+                    "drive",
+                    "use",
+                    "james",
+                    "start",
+                    "fuel"
+                ]
+            }
+        ]
+    }
+]
