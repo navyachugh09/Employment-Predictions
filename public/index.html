@@ -90,6 +90,51 @@
   .sidebar .nav .nav-item.active > .nav-link {
     background: rgba(255,255,255,0.08);
   }
+
+  .industry-dropdown {
+    position: relative;
+  }
+
+  .industry-dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    max-height: 320px;
+    overflow-y: auto;
+    background: #1e1e2d;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.5rem;
+  }
+
+  .industry-dropdown-menu.show {
+    display: block;
+  }
+
+  .industry-dropdown-menu .form-check {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+  }
+
+  .industry-dropdown-menu .form-check-label {
+    color: #f5f5f5;
+  }
+
+  .summary-card .card-body {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .legend-swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    display: inline-block;
+  }
 </style>
 
 
@@ -147,7 +192,7 @@
 </li>
 
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="industry.html">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
@@ -155,7 +200,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+            <a class="nav-link" href="occupation.html">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>

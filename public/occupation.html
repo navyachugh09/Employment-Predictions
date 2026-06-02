@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Occupation Overview – Victorian Employment Projections Dashboard</title>
+
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+
+    <script src="assets/vendors/chart.js/Chart.min.js"></script>
+
+    <style>
+      :root {
+        --bs-body-bg: #1f2937;
+        --bs-body-color: #f3f4f6;
+      }
+
+      body {
+        background-color: #111827;
+        color: #f3f4f6;
+      }
+
+      .main-panel,
+      .content-wrapper {
+        background-color: #111827;
+        color: #f3f4f6;
+      }
+
+      .card {
+        background-color: #1f2937;
+        border-color: #374151;
+        color: #f3f4f6;
+      }
+
+      .page-title {
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      .select-occupation {
+        width: 100%;
+        background: #374151;
+        border-color: #4b5563;
+        color: #f3f4f6;
+      }
+
+      .select-occupation option {
+        background: #1f2937;
+        color: #f3f4f6;
+      }
+
+      .summary-card {
+        background: #111827;
+        color: #ffffff;
+        height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid #374151;
+      }
+
+      .summary-card h6 {
+        color: #9ca3af;
+        min-height: 48px;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+        line-height: 1.2;
+      }
+
+      .summary-card h3 {
+        color: #ffffff;
+        margin-top: 0.5rem;
+        font-size: 1.8rem;
+        line-height: 1.2;
+        word-break: break-word;
+      }
+
+      .panel-tabs {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .panel-tabs button {
+        background: #374151;
+        border: 1px solid #4b5563;
+        color: #f3f4f6;
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .panel-tabs button.active {
+        background: #2563eb;
+        border-color: #2563eb;
+      }
+
+      .chart-card {
+        height: 520px;
+        display: block;
+      }
+
+      .chart-card canvas {
+        width: 100% !important;
+        height: 390px !important;
+      }
+
+      .occupation-panel {
+        min-height: 100%;
+      }
+
+      .sidebar .nav .nav-item.active > .nav-link {
+        background: rgba(255,255,255,0.08);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-scroller">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+          <a class="sidebar-brand brand-logo text-white text-decoration-none fw-bold" href="index.html">VICDASH</a>
+          <a class="sidebar-brand brand-logo-mini text-white text-decoration-none fw-bold" href="index.html">VIC</a>
+        </div>
+
+        <ul class="nav">
+          <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+          </li>
+
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="index.html">
+              <span class="menu-icon"><i class="mdi mdi-speedometer"></i></span>
+              <span class="menu-title">Overview</span>
+            </a>
+          </li>
+
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="index.html#geographic-section">
+              <span class="menu-icon"><i class="mdi mdi-map"></i></span>
+              <span class="menu-title">Geographic Overview</span>
+            </a>
+          </li>
+
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="industry.html">
+              <span class="menu-icon"><i class="mdi mdi-playlist-play"></i></span>
+              <span class="menu-title">Industry Overview</span>
+            </a>
+          </li>
+
+          <li class="nav-item menu-items active">
+            <a class="nav-link active" href="occupation.html">
+              <span class="menu-icon"><i class="mdi mdi-table-large"></i></span>
+              <span class="menu-title">Occupation Overview</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container-fluid page-body-wrapper">
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo-mini" href="index.html">
+              <img src="assets/images/logo-mini.svg" alt="logo">
+            </a>
+          </div>
+
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="mdi mdi-menu"></span>
+            </button>
+
+            <ul class="navbar-nav w-100">
+              <li class="nav-item w-100">
+                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                  <input type="text" class="form-control" placeholder="Search regions, industries, occupations">
+                </form>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav navbar-nav-right"></ul>
+
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-format-line-spacing"></span>
+            </button>
+          </div>
+        </nav>
+
+        <div class="main-panel">
+          <div class="content-wrapper p-4">
+            <div class="row mb-3">
+              <div class="col-12">
+                <h4 class="mb-2 page-title">Occupation Overview</h4>
+                <p class="text-muted mb-0">Compare projected workforce demand across occupations, industries, and regions.</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card p-3 mb-3 occupation-panel">
+                  <label>Select first occupation</label>
+                  <select id="occupationSelect1" class="form-control select-occupation"></select>
+
+                  <div class="row mt-3">
+                    <div class="col-4">
+                      <div class="card summary-card p-2">
+                        <h6>Existing workers</h6>
+                        <h3 id="occ1_existing">--</h3>
+                      </div>
+                    </div>
+
+                    <div class="col-4">
+                      <div class="card summary-card p-2">
+                        <h6>New workers</h6>
+                        <h3 id="occ1_new">--</h3>
+                      </div>
+                    </div>
+
+                    <div class="col-4">
+                      <div class="card summary-card p-2">
+                        <h6>Growth rate</h6>
+                        <h3 id="occ1_growth">--</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-3 card p-3 chart-card">
+                    <div class="panel-tabs">
+                      <button data-mode="industry" class="active">New workers by industry</button>
+                      <button data-mode="region">New workers by region</button>
+                    </div>
+                    <canvas id="occ1_chart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card p-3 mb-3 occupation-panel">
+                  <label>Select second occupation</label>
+                  <select id="occupationSelect2" class="form-control select-occupation"></select>
+
+                  <div class="row mt-3">
+                    <div class="col-4">
+                      <div class="card summary-card p-2">
+                        <h6>Existing workers</h6>
+                        <h3 id="occ2_existing">--</h3>
+                      </div>
+                    </div>
+
+                    <div class="col-4">
+                      <div class="card summary-card p-2">
+                        <h6>New workers</h6>
+                        <h3 id="occ2_new">--</h3>
+                      </div>
+                    </div>
+
+                    <div class="col-4">
+                      <div class="card summary-card p-2">
+                        <h6>Growth rate</h6>
+                        <h3 id="occ2_growth">--</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-3 card p-3 chart-card">
+                    <div class="panel-tabs">
+                      <button data-mode="industry" class="active">New workers by industry</button>
+                      <button data-mode="region">New workers by region</button>
+                    </div>
+                    <canvas id="occ2_chart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="occupation.js"></script>
+  </body>
+</html>
