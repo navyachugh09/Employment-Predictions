@@ -22,6 +22,21 @@ function fmt(n) {
   return Math.ceil(Number(n || 0)).toLocaleString();
 }
 
+function fmtPercent(n) {
+  let value = Number(n || 0);
+
+  // If backend sends decimal format, e.g. 0.023 = 2.3%
+  if (Math.abs(value) > 0 && Math.abs(value) < 1) {
+    value = value * 100;
+  }
+
+  if (Math.abs(value) > 0 && Math.abs(value) < 1) {
+    return `${value.toFixed(2)}%`;
+  }
+
+  return `${value.toFixed(1)}%`;
+}
+
 async function fetchOccupations() {
   const res = await fetch("/api/occupations");
   return res.json();
@@ -131,6 +146,9 @@ async function init() {
   const sel1 = document.getElementById("occupationSelect1");
   const sel2 = document.getElementById("occupationSelect2");
 
+  sel1.innerHTML = "";
+  sel2.innerHTML = "";
+
   occs.forEach((occupation) => {
     const opt1 = document.createElement("option");
     opt1.value = occupation;
@@ -162,8 +180,8 @@ async function init() {
       newDetails.summary.totalMetricValue || 0
     );
 
-    const growth = Number(newDetails.summary.growthRate || 0);
-    document.getElementById(prefix + "_growth").textContent = `${growth.toFixed(1)}%`;
+    const growthRate = Number(newDetails.summary.growthRate || 0);
+    document.getElementById(prefix + "_growth").textContent = fmtPercent(growthRate);
 
     const panelCard = document.querySelector("#" + prefix + "_chart").closest(".card");
     const buttons = panelCard.querySelectorAll(".panel-tabs button");
