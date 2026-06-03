@@ -1,4 +1,5 @@
 
+
 /* topic_modelling.js */
 
 let TOPIC_DATA = null;
@@ -137,35 +138,60 @@ function selectOccupation(occupation) {
       ).join("");
 
     // Card HTML
-    card.innerHTML = `
+card.innerHTML = `
 
-      <div class="card-body">
+<div class="card-body">
 
-        <h5 class="mb-3">
+  <div class="row align-items-center">
 
-          Topic ${topic.topic_id}
+    <div class="col-md-7">
 
-        </h5>
+      <h5 class="mb-3">
 
-        <div class="mb-3">
+        Topic ${topic.topic_id}
 
-          <span class="badge bg-primary">
+      </h5>
 
-            ${topic.label}
+      <div class="mb-3">
 
-          </span>
+        <span class="badge bg-primary">
 
-        </div>
+          ${topic.label}
 
-        <div>
-
-          ${keywordHTML}
-
-        </div>
+        </span>
 
       </div>
 
-    `;
+      <div class="mb-3">
+
+        ${keywordHTML}
+
+      </div>
+
+      <p class="text-muted">
+
+        ${topic.insight ||
+        "This topic represents a common discussion theme within the occupation."}
+
+      </p>
+
+    </div>
+
+    <div class="col-md-5 text-center">
+
+      <img
+        src="${topic.wordcloud}"
+        alt="Topic Wordcloud"
+        class="img-fluid rounded shadow-sm"
+      >
+
+    </div>
+
+  </div>
+
+</div>
+
+`;
 
     // Add card
     container.appendChild(card);

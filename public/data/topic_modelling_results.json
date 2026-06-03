@@ -4,51 +4,50 @@
         "topics": [
             {
                 "topic_id": 1,
-                "label": "Other",
+                "label": "Care Planning & Support Needs",
+            
                 "keywords": [
                     "needs",
-                    "bed",
                     "age",
-                    "youll",
-                    "talk",
-                    "assessment",
-                    "abn",
-                    "apply",
-                    "important",
-                    "business"
-                ]
+                    "talk"
+                ],
+            
+                "insight":
+                "This topic focuses on care planning, support assessments, and the daily needs of individuals receiving aged or disability care services.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/aged_and_disabled_carers_topic1.png"
             },
             {
                 "topic_id": 2,
-                "label": "Workforce management & operations",
+                "label": "Workforce Management & Operations",
                 "keywords": [
                     "organization",
-                    "risk",
-                    "having",
-                    "workforce",
-                    "understand",
-                    "aged",
-                    "approach",
                     "management",
-                    "safety",
-                    "looking"
-                ]
+                    "safety"
+                ],
+
+                "insight":
+                "This topic highlights workplace management, organisational processes, safety practices, and workforce coordination within care environments.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/aged_and_disabled_carers_topic2.png"
             },
             {
                 "topic_id": 3,
-                "label": "Employment & migration",
+                "label": "Employment & Migration",
                 "keywords": [
-                    "carer",
-                    "age",
-                    "caring",
                     "visa",
                     "stress",
                     "home",
-                    "best",
-                    "respite",
-                    "employer",
                     "experience"
-                ]
+                ],
+
+                "insight":
+                "This topic explores employment pathways into the care sector, including migration opportunities, employer requirements, and the experiences of carers.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/aged_and_disabled_carers_topic3.png"
             }
         ]
     },
@@ -57,51 +56,49 @@
         "topics": [
             {
                 "topic_id": 1,
-                "label": "Retail & customer service",
+                "label": "Retail & customer service", 
                 "keywords": [
                     "retail",
-                    "store",
-                    "mate",
-                    "tell",
                     "experience",
                     "customer",
                     "manager",
-                    "clients",
-                    "ask",
-                    "ill"
-                ]
+                    "clients"
+                ],
+                "insight":
+                "This topic focuses on customer interactions, workplace experiences, and the skills required to work effectively in retail environments.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/sales_assistants_topic1.png"
             },
             {
                 "topic_id": 2,
-                "label": "Retail & customer service",
+                "label": "Store Operations & Customer Enquiries",
                 "keywords": [
                     "customer",
                     "store",
                     "file",
                     "order",
-                    "whats",
-                    "days",
-                    "questions",
-                    "saying",
-                    "check",
-                    "did"
-                ]
+                    "questions"
+                ],
+                "insight":
+                "This topic highlights common customer service tasks, including handling orders, responding to enquiries, and managing store operations.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/sales_assistants_topic2.png"
             },
             {
                 "topic_id": 3,
-                "label": "Retail & customer service",
+                "label": "Retail Industry Trends",
                 "keywords": [
                     "retail",
                     "online",
-                    "stores",
-                    "cool",
-                    "start",
-                    "getting",
-                    "trying",
-                    "big",
-                    "build",
-                    "roles"
-                ]
+                    "stores"
+                ],
+                "insight":
+                "This topic explores retail industry trends, including online shopping, store operations, and career development within retail businesses.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/sales_assistants_topic3.png"
             }
         ]
     },
@@ -110,51 +107,53 @@
         "topics": [
             {
                 "topic_id": 1,
-                "label": "Health & social services",
+                "label": "Clinical Practice & Healthcare Careers",
                 "keywords": [
                     "nursing",
                     "healthcare",
                     "career",
                     "clinical",
-                    "shift",
-                    "role",
-                    "youll",
-                    "higher",
                     "doctors",
                     "experience"
-                ]
+                ],
+                "insight":
+                "This topic focuses on clinical practice, healthcare careers, and the professional experiences of registered nurses.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/registered_nurses_topic1.png"
             },
             {
                 "topic_id": 2,
-                "label": "Health & social services",
+                "label": "Nursing Education & Training",
                 "keywords": [
-                    "nursing",
-                    "clinical",
-                    "year",
                     "little",
                     "placement",
-                    "workforce",
                     "pandemic",
                     "ill",
-                    "student",
-                    "whats"
-                ]
+                    "student"
+                ],
+                "insight":
+                "This topic highlights nursing education, clinical placements, workforce challenges, and experiences faced by nursing students.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/registered_nurses_topic2.png"
             },
             {
                 "topic_id": 3,
-                "label": "Health & social services",
+                "label": "Workplace Challenges, Lifestyle & Career Value",
                 "keywords": [
-                    "high",
-                    "sort",
                     "important",
-                    "feel",
-                    "nursing",
                     "better",
                     "life",
                     "strong",
                     "worth",
                     "cost"
-                ]
+                ],
+                "insight":
+                "This topic explores the personal and professional impact of nursing, including job satisfaction, workplace pressures, and career value.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/registered_nurses_topic3.png"
             }
         ]
     },
@@ -163,51 +162,56 @@
         "topics": [
             {
                 "topic_id": 1,
-                "label": "Cleaning & maintenance",
+                "label": "Working Conditions & Wages",
                 "keywords": [
                     "clean",
                     "hours",
                     "week",
                     "money",
-                    "site",
                     "experience",
-                    "easy",
-                    "production",
-                    "free",
                     "wage"
-                ]
+                ],
+                "insight":
+                "This topic focuses on working conditions within the cleaning industry, including wages, hours, workload, and workplace experiences.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/commercial_cleaners_topic1.png"
             },
             {
                 "topic_id": 2,
-                "label": "Cleaning & maintenance",
+                "label": "Cleaning Services & Facility Operations",
                 "keywords": [
                     "business",
                     "clean",
                     "start",
                     "service",
                     "number",
-                    "way",
-                    "end",
-                    "ask",
                     "facility",
                     "learn"
-                ]
+                ],
+                "insight":
+                "This topic highlights cleaning services, facility maintenance, business operations, and skills required within the industry.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/commercial_cleaners_topic2.png"
             },
             {
                 "topic_id": 3,
-                "label": "Employment & migration",
+                "label": "Employment & Migration",
                 "keywords": [
-                    "year",
                     "accommodation",
-                    "average",
                     "visa",
                     "days",
                     "foreign",
                     "dollar",
                     "areas",
-                    "rooms",
-                    "available"
-                ]
+                    "rooms"
+                ],
+                "insight":
+                "This topic explores employment opportunities for migrant workers, including visa pathways, accommodation, and working arrangements.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/commercial_cleaners_topic3.png"
             }
         ]
     },
@@ -216,9 +220,8 @@
         "topics": [
             {
                 "topic_id": 1,
-                "label": "Education & training",
+                "label": "Career Pathways & School Support",
                 "keywords": [
-                    "youve",
                     "teachers",
                     "education",
                     "school",
@@ -228,27 +231,35 @@
                     "hour",
                     "life",
                     "career"
-                ]
+                ],
+                "insight":
+                "This topic focuses on career pathways, workplace experiences, and the role of education aides in supporting teachers and students.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/education_aides_topic1.png"
             },
             {
                 "topic_id": 2,
-                "label": "Education & training",
+                "label": "Teaching & Learning Support",
                 "keywords": [
-                    "teacher",
                     "teaching",
                     "learning",
                     "assistant",
                     "class",
                     "pupils",
-                    "school",
                     "child",
                     "lesson",
                     "needs"
-                ]
+                ],
+                "insight":
+                "This topic highlights classroom support activities, learning assistance, student engagement, and teaching support responsibilities.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/education_aides_topic2.png"
             },
             {
                 "topic_id": 3,
-                "label": "Other",
+                "label": "Student Engagement & Development",
                 "keywords": [
                     "fun",
                     "kids",
@@ -260,7 +271,12 @@
                     "ways",
                     "worked",
                     "children helping"
-                ]
+                ],
+                "insight":
+                "This topic explores student development, classroom participation, and strategies used to support learning outcomes.",
+            
+                "wordcloud":
+                "assets/images/topic_wordclouds/education_aides_topic3.png"
             }
         ]
     },
@@ -269,52 +285,60 @@
         "topics": [
             {
                 "topic_id": 1,
-                "label": "Other",
+                "label": "Automotive Careers & Training",
                 "keywords": [
                     "automotive",
                     "vehicle",
-                    "years",
-                    "better",
                     "mechanic",
                     "heavy",
                     "course",
                     "light",
-                    "making",
-                    "stuff"
-                ]
+                    "making"
+                ],
+                "insight":
+                "This topic highlights common vehicle maintenance activities, troubleshooting techniques, and mechanical repair procedures performed by motor mechanics.",
+                
+                "wordcloud":
+                "assets/images/topic_wordclouds/motor_mechanics_topic1.png"
             },
             {
                 "topic_id": 2,
-                "label": "Other",
+                "label": "Vehicle Maintenance & Repair",
                 "keywords": [
                     "battery",
                     "start",
-                    "let",
-                    "push",
                     "oil",
                     "bring",
                     "wire",
                     "pull",
                     "ignition",
                     "try"
-                ]
+                ],
+                "insight":
+                "This topic highlights common vehicle maintenance activities, troubleshooting techniques, and mechanical repair procedures performed by motor mechanics.",
+                
+                "wordcloud":
+                "assets/images/topic_wordclouds/motor_mechanics_topic2.png"
             },
             {
                 "topic_id": 3,
-                "label": "Other",
+                "label": "Automotive Technology & Electric Vehicles",
                 "keywords": [
-                    "battery",
                     "vehicle",
                     "motor",
                     "high",
                     "electric",
                     "drive",
-                    "use",
-                    "james",
-                    "start",
                     "fuel"
-                ]
+                ],
+                "insight":
+                "This topic explores developments in automotive technology, including electric vehicles, vehicle performance systems, and emerging industry trends.",
+                
+                "wordcloud":
+                "assets/images/topic_wordclouds/motor_mechanics_topic3.png"
             }
         ]
     }
 ]
+
+    
