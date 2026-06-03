@@ -2,6 +2,7 @@
 # Imports
 import pandas as pd
 import re
+import json
 from sklearn.feature_extraction.text import CountVectorizer, ENGLISH_STOP_WORDS
 from sklearn.decomposition import LatentDirichletAllocation
 
@@ -15,6 +16,9 @@ print(youtube_transcripts_df.columns)
 
 # Get all occupations
 occupations = youtube_transcripts_df['occupation'].dropna().unique()
+print("\nOccupations found:")
+print(occupations)
+print("Count:", len(occupations))
 
 # Cleaning Stopwords
 custom_stopwords = set([
@@ -51,8 +55,25 @@ custom_stopwords = set([
     "nurse", "nurses",
 
     # common australia filler
-    "australia", "australian"
-])
+    "australia", "australian",
+
+    # contractions
+    "youll", "youve","youd","im",
+    "ill", "isnt", "wasnt", "werent",
+    "cant", "couldnt", "shouldnt",
+    "wouldnt", "wont", "didnt", "doesnt",
+    "dont",
+
+    # more youtube filler
+    "video", "videos", "watch",
+    "watching", "comment", "comments",
+    "subscribe",
+
+    # generic occupation filler
+    "career", "experience", "years",
+    "year", "industry", "role",
+    "roles" 
+    ])
 
 stopwords = ENGLISH_STOP_WORDS.union(custom_stopwords)
 
@@ -118,8 +139,7 @@ def auto_label(topic_words):
         ],
 
         "Retail & customer service": [
-            "retail", "store", "customer",
-            "industry"
+            "retail", "store", "customer"
         ],
 
         "Employment & migration": [
@@ -141,35 +161,63 @@ def auto_label(topic_words):
 
     for category, keywords in categories.items():
 
-        score = sum(word in topic_words for word in keywords)
+        score = sum(
+            word in topic_words
+            for word in keywords
+        )
 
         scores[category] = score
 
-    best_category = max(scores, key=scores.get)
+    best_category = max(
+        scores,
+        key=scores.get
+    )
 
     if scores[best_category] == 0:
         return "Other"
 
     return best_category
 
-# WordCloud Function
-def displayWordcloudsByOccupation(all_topic_data):
 
-    import matplotlib.pyplot as plt
-    from wordcloud import WordCloud
-    import math
+def generate_insight(label):
 
-    total_topics = sum(
-        len(topics)
-        for _, topics in all_topic_data
+    insights = {
+
+        "Health & social services":
+        "Discussions focus on healthcare responsibilities, patient care and workplace experiences.",
+
+        "Education & training":
+        "Discussions focus on teaching, learning environments and supporting students.",
+
+        "Retail & customer service":
+        "Discussions focus on customer interactions, sales environments and retail work.",
+
+        "Employment & migration":
+        "Discussions highlight career opportunities, salaries and employment pathways.",
+
+        "Cleaning & maintenance":
+        "Discussions focus on cleaning duties, workplace hygiene and maintenance activities.",
+
+        "Workforce management & operations":
+        "Discussions focus on workforce planning, organisational processes and operational responsibilities."
+    }
+
+    return insights.get(
+        label,
+        "This topic represents a common discussion theme found within the occupation."
     )
 
-    cols = 4
-    rows = math.ceil(total_topics / cols)
 
-    plt.figure(figsize=(22, rows * 4))
+# WordCloud Function
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import os
 
-    plot_num = 1
+def save_topic_wordclouds(all_topic_data):
+
+    output_folder = "public/assets/images/topic_wordclouds"
+
+    os.makedirs(output_folder, exist_ok=True)
 
     for occupation, topics in all_topic_data:
 
@@ -178,30 +226,34 @@ def displayWordcloudsByOccupation(all_topic_data):
             text = " ".join(topic_words)
 
             wordcloud = WordCloud(
-                background_color='black',
-                width=400,
-                height=200,
+                background_color="white",
+                width=600,
+                height=300
             ).generate(text)
 
-            plt.subplot(rows, cols, plot_num)
+            filename = (
+                f"{occupation}_topic{topic_id + 1}.png"
+            )
+
+            filepath = os.path.join(
+                output_folder,
+                filename
+            )
+
+            plt.figure(figsize=(6, 3))
 
             plt.imshow(wordcloud)
 
             plt.axis("off")
 
-            plt.title(
-                f"{occupation.replace('_', ' ').title()}\nTopic {topic_id + 1}",
-                fontsize=9,
-                pad=8
+            plt.tight_layout()
+
+            plt.savefig(
+                filepath,
+                bbox_inches="tight"
             )
 
-            plot_num += 1
-
-    plt.tight_layout(pad=4.0)
-
-    plt.savefig("all_occupation_wordclouds.png")
-
-    plt.show()
+            plt.close()
 
 all_topic_data = []
 
@@ -209,20 +261,15 @@ all_topic_data = []
 for occupation in occupations:
 
     print("\n" + "=" * 60)
-
     print(f"TOPICS FOR: {occupation.upper()}")
-
     print("=" * 60)
 
-    # Filter occupation data
     filtered_df = youtube_transcripts_df[
         youtube_transcripts_df['occupation'] == occupation
     ]
 
-    # Get transcript text
     text_data = filtered_df['text'].dropna().astype(str).tolist()
 
-    # Clean text
     cleaned_documents = [
 
         clean_text(doc)
@@ -232,49 +279,113 @@ for occupation in occupations:
         if len(doc.split()) > 2
     ]
 
-    # Skip occupations with too little data
     if len(cleaned_documents) < 5:
 
         print("Not enough data.")
 
         continue
 
-    # Vectorization
     vectorizer = CountVectorizer(
 
         max_df=0.8,
 
         min_df=2,
 
-        ngram_range=(1,2)
+        ngram_range=(1, 2)
+
     )
 
-    doc_term_matrix = vectorizer.fit_transform(cleaned_documents)
+    doc_term_matrix = vectorizer.fit_transform(
+        cleaned_documents
+    )
 
-    # LDA Model
     lda = LatentDirichletAllocation(
 
         n_components=3,
 
         random_state=42
+
     )
 
     lda.fit(doc_term_matrix)
 
-    # Get Topics
-    topics = get_clean_topic_words(lda, vectorizer)
+    topics = get_clean_topic_words(
+        lda,
+        vectorizer
+    )
 
     all_topic_data.append(
-    (
-        occupation,
-        topics
+
+        (
+            occupation,
+            topics
+        )
+
     )
+
+  
+
+
+# Generate Wordcloud Images
+save_topic_wordclouds(all_topic_data)
+
+
+# Create Dashboard JSON
+dashboard_topics = []
+
+for occupation, topics in all_topic_data:
+
+    occupation_topics = {
+
+        "occupation": occupation,
+
+        "topics": []
+
+    }
+
+    for i, topic_words in enumerate(topics):
+
+        label = auto_label(topic_words)
+
+        occupation_topics["topics"].append({
+
+        "topic_id": i + 1,
+
+        "label": label,
+
+        "keywords": topic_words,
+
+        "insight": generate_insight(label),
+
+        "wordcloud":
+        f"assets/images/topic_wordclouds/{occupation}_topic{i+1}.png"
+
+    })
+
+    dashboard_topics.append(
+        occupation_topics
+    )
+
+
+with open(
+    "data/topic_modelling_results.json",
+    "w"
+) as f:
+
+    json.dump(
+        dashboard_topics,
+        f,
+        indent=4
+    )
+
+print(
+    "\nTopic modelling JSON saved successfully."
 )
 
-    print("\n===== TOPICS =====")
+print("\n===== TOPICS =====")
 
-    # Print Topics
-    for i, topic_words in enumerate(topics):
+ # Print Topics
+for i, topic_words in enumerate(topics):
 
         label = auto_label(topic_words)
 
@@ -282,4 +393,4 @@ for occupation in occupations:
 
         print(f"Keywords: {' | '.join(topic_words)}")
 
-    displayWordcloudsByOccupation(all_topic_data)
+save_topic_wordclouds(all_topic_data)
