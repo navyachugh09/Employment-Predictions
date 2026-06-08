@@ -20,72 +20,11 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="assets/css/style.css">
    
-    <link 
-    rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-    />
+
 
     <style>
-  .dashboard-section {
-    display: none;
-  }
 
-  .dashboard-section.active-section {
-    display: block;
-  }
 
-  #victoriaMap {
-    height: 520px;
-    width: 100%;
-    border-radius: 12px;
-    z-index: 1;
-  }
-
-  .geo-legend {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-
-  .geo-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.875rem;
-    color: #bfbfbf;
-  }
-
-  .geo-legend-swatch {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    display: inline-block;
-  }
-
-  .geo-panel-list {
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 0;
-  }
-
-  .geo-panel-list li {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .geo-panel-list li:last-child {
-    border-bottom: none;
-  }
-
-  .geo-stat-value {
-    font-weight: 600;
-    color: #ffffff;
-  }
 
   .sidebar .nav .nav-item.active > .nav-link {
     background: rgba(255,255,255,0.08);
@@ -135,6 +74,28 @@
     border-radius: 4px;
     display: inline-block;
   }
+  #metricSelect,
+#industrySelect {
+  background-color: #273142 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 0.35rem;
+}
+
+#metricSelect:focus,
+#industrySelect:focus {
+  background-color: #273142 !important;
+  color: #ffffff !important;
+  border-color: #4f8cff !important;
+  box-shadow: 0 0 0 0.15rem rgba(79, 140, 255, 0.2) !important;
+  outline: none;
+}
+
+#metricSelect option,
+#industrySelect option {
+  background-color: #ffffff;
+  color: #111827;
+}
 </style>
 
 
@@ -161,20 +122,19 @@
           </div>
         </div>
       </div>
-      <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo text-white text-decoration-none fw-bold" href="index.html">VICDASH</a>
-<a class="sidebar-brand brand-logo-mini text-white text-decoration-none fw-bold" href="index.html">VIC</a>
-        </div>
-        <ul class="nav">
-  
-          <li class="nav-item nav-category">
-            <span class="nav-link">Navigation</span>
-          </li>
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+    <a class="sidebar-brand brand-logo text-white text-decoration-none fw-bold" href="index.html">VICDASH</a>
+    <a class="sidebar-brand brand-logo-mini text-white text-decoration-none fw-bold" href="index.html">VIC</a>
+  </div>
 
-<li class="nav-item menu-items active" id="nav-overview">
-  <a class="nav-link section-link" href="#overview-section" data-section="overview-section">
+  <ul class="nav">
+    <li class="nav-item nav-category">
+      <span class="nav-link">Navigation</span>
+    </li>
+
+<li class="nav-item menu-items active">
+  <a class="nav-link active" href="index.html">
     <span class="menu-icon">
       <i class="mdi mdi-speedometer"></i>
     </span>
@@ -182,8 +142,8 @@
   </a>
 </li>
 
-<li class="nav-item menu-items" id="nav-geographic">
-  <a class="nav-link section-link" href="#geographic-section" data-section="geographic-section">
+ <li class="nav-item menu-items">
+  <a class="nav-link" href="geographic.html">
     <span class="menu-icon">
       <i class="mdi mdi-map-marker-radius"></i>
     </span>
@@ -191,74 +151,43 @@
   </a>
 </li>
 
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="industry.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
-              </span>
-              <span class="menu-title">Industry Overview</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="occupation.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
-              </span>
-              <span class="menu-title">Occupation Overview</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
-              </span>
-              <span class="menu-title">Sentiment Analysis</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="topic_modelling.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-chart-bubble"></i>
-              </span>
-              <span class="menu-title">Topic Modelling</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/icons/mdi.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-contacts"></i>
-              </span>
-              <span class="menu-title">Methodology</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <span class="menu-icon">
-                <i class="mdi mdi-security"></i>
-              </span>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-file-document-box"></i>
-              </span>
-              <span class="menu-title">Documentation</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="industry.html">
+        <span class="menu-icon">
+          <i class="mdi mdi-playlist-play"></i>
+        </span>
+        <span class="menu-title">Industry Overview</span>
+      </a>
+    </li>
+
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="occupation.html">
+        <span class="menu-icon">
+          <i class="mdi mdi-table-large"></i>
+        </span>
+        <span class="menu-title">Occupation Overview</span>
+      </a>
+    </li>
+
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="sentiment.html">
+        <span class="menu-icon">
+          <i class="mdi mdi-chart-bar"></i>
+        </span>
+        <span class="menu-title">Sentiment Analysis</span>
+      </a>
+    </li>
+
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="topic_modelling.html">
+        <span class="menu-icon">
+          <i class="mdi mdi-chart-bubble"></i>
+        </span>
+        <span class="menu-title">Topic Modelling</span>
+      </a>
+    </li>
+  </ul>
+</nav>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_navbar.html -->
@@ -270,13 +199,7 @@
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
-            <ul class="navbar-nav w-100">
-              <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search regions, industries, occupations">
-                </form>
-              </li>
-            </ul>
+
             <ul class="navbar-nav navbar-nav-right">
 
               
@@ -292,7 +215,7 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div id="overview-section" class="dashboard-section active-section">
+            <div id="overview-section">
 
             <div class="row mb-4">
   <div class="col-md-6 col-xl-3 grid-margin stretch-card">
@@ -357,71 +280,7 @@
 </div>
 </div>
 
-<div id="geographic-section" class="dashboard-section">
-  <div class="row mb-4">
-    <div class="col-md-8 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
-            <div>
-              <h4 class="card-title mb-1">Geographic Overview</h4>
-              <p class="text-muted mb-0">Click a region to load detailed demand insights.</p>
-            </div>
-            <div style="min-width: 240px;">
-              <label for="geoMetricSelect" class="form-label">Map Metric</label>
-              <select id="geoMetricSelect" class="form-control">
-                <option value="total_new_workers">Total New Workers</option>
-                <option value="employment_growth">Employment Growth</option>
-                <option value="retirements">Retirement Projection</option>
-              </select>
-            </div>
-          </div>
 
-          <div id="victoriaMap"></div>
-          <div id="geoLegend" class="geo-legend"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Selected Region</h4>
-          <h3 id="geoRegionName" class="mb-3">None selected</h3>
-
-          <div class="mb-4">
-            <h6 class="text-muted">Key Metrics</h6>
-            <ul class="geo-panel-list">
-              <li><span>Total New Workers</span><span id="geoTotalWorkers" class="geo-stat-value">--</span></li>
-              <li><span>Employment Growth</span><span id="geoEmploymentGrowth" class="geo-stat-value">--</span></li>
-              <li><span>Retirement Projection</span><span id="geoRetirements" class="geo-stat-value">--</span></li>
-              <li><span>Top Occupation</span><span id="geoTopOccupation" class="geo-stat-value">--</span></li>
-            </ul>
-          </div>
-
-          <div class="mb-4">
-            <h6 class="text-muted">Top Occupations</h6>
-            <ul id="geoOccupations" class="geo-panel-list">
-              <li><span>No region selected</span><span class="geo-stat-value">--</span></li>
-            </ul>
-          </div>
-
-          <div class="mb-4">
-            <h6 class="text-muted">Top Industries</h6>
-            <ul id="geoIndustries" class="geo-panel-list">
-              <li><span>No region selected</span><span class="geo-stat-value">--</span></li>
-            </ul>
-          </div>
-
-          <div>
-            <h6 class="text-muted">Insight</h6>
-            <p id="geoInsight" class="mb-0 text-muted">Select a region on the map to view region-specific insights.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
     
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -456,56 +315,9 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="dashboard.js"></script>
-    <script
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-  crossorigin=""
-></script>
-<script src="geographic.js"></script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const sectionLinks = document.querySelectorAll(".section-link");
-    const sections = document.querySelectorAll(".dashboard-section");
-    const navOverview = document.getElementById("nav-overview");
-    const navGeographic = document.getElementById("nav-geographic");
 
-    function showSection(sectionId) {
-      sections.forEach((section) => {
-        section.classList.remove("active-section");
-      });
 
-      const target = document.getElementById(sectionId);
-      if (target) {
-        target.classList.add("active-section");
-      }
-
-      navOverview?.classList.remove("active");
-      navGeographic?.classList.remove("active");
-
-      if (sectionId === "overview-section") {
-        navOverview?.classList.add("active");
-      }
-
-      if (sectionId === "geographic-section") {
-        navGeographic?.classList.add("active");
-        if (window.initGeographicOverview) {
-          window.initGeographicOverview();
-        }
-      }
-    }
-
-    sectionLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const sectionId = link.dataset.section;
-        showSection(sectionId);
-      });
-    });
-
-    showSection("overview-section");
-  });
-</script>
     <!-- End custom js for this page -->
   </body>
 </html>
