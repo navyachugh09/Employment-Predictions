@@ -1,23 +1,6 @@
 let occChart1 = null;
 let occChart2 = null;
 
-function createColorPalette(count) {
-  const palette = [
-    "#2563eb",
-    "#14b8a6",
-    "#f59e0b",
-    "#8b5cf6",
-    "#ec4899",
-    "#22c55e",
-    "#fb7185",
-    "#0ea5e9",
-    "#a855f7",
-    "#f97316"
-  ];
-
-  return Array.from({ length: count }, (_, i) => palette[i % palette.length]);
-}
-
 function fmt(n) {
   return Math.ceil(Number(n || 0)).toLocaleString();
 }
@@ -25,7 +8,6 @@ function fmt(n) {
 function fmtPercent(n) {
   let value = Number(n || 0);
 
-  // If backend sends decimal format, e.g. 0.023 = 2.3%
   if (Math.abs(value) > 0 && Math.abs(value) < 1) {
     value = value * 100;
   }
@@ -78,8 +60,6 @@ function renderBarChart(canvasId, labels, values, labelText) {
     .filter((row) => row.value > 0)
     .slice(0, 8);
 
-  const palette = createColorPalette(cleanRows.length);
-
   const chart = new Chart(ctx, {
     type: "bar",
     data: {
@@ -88,8 +68,8 @@ function renderBarChart(canvasId, labels, values, labelText) {
         {
           label: labelText || "New workers",
           data: cleanRows.map((row) => row.value),
-          backgroundColor: palette.map((c) => c + "CC"),
-          borderColor: palette,
+          backgroundColor: "rgba(37, 99, 235, 0.8)",
+          borderColor: "rgba(37, 99, 235, 1)",
           borderWidth: 1
         }
       ]
@@ -113,7 +93,10 @@ function renderBarChart(canvasId, labels, values, labelText) {
             ticks: {
               maxRotation: 45,
               minRotation: 45,
-              autoSkip: false
+              autoSkip: false,
+              fontColor: "#f3f4f6",
+              fontStyle: "bold",
+              fontSize: 12
             }
           }
         ],
@@ -122,6 +105,8 @@ function renderBarChart(canvasId, labels, values, labelText) {
             ticks: {
               beginAtZero: true,
               min: 0,
+              fontColor: "#f3f4f6",
+              fontStyle: "bold",
               callback: function (value) {
                 return Number(value).toLocaleString();
               }
