@@ -1,6 +1,9 @@
 let occChart1 = null;
 let occChart2 = null;
 
+Chart.defaults.global.defaultFontColor = "#ffffff";
+Chart.defaults.global.defaultFontStyle = "bold";
+
 function fmt(n) {
   return Math.ceil(Number(n || 0)).toLocaleString();
 }
@@ -17,6 +20,26 @@ function fmtPercent(n) {
   }
 
   return `${value.toFixed(1)}%`;
+}
+
+function styleOccupationSelects() {
+  const selects = [
+    document.getElementById("occupationSelect1"),
+    document.getElementById("occupationSelect2")
+  ];
+
+  selects.forEach((select) => {
+    if (!select) return;
+
+    select.style.color = "#ffffff";
+    select.style.backgroundColor = "#374151";
+    select.style.borderColor = "#4b5563";
+
+    Array.from(select.options).forEach((option) => {
+      option.style.color = "#ffffff";
+      option.style.backgroundColor = "#1f2937";
+    });
+  });
 }
 
 async function fetchOccupations() {
@@ -68,9 +91,11 @@ function renderBarChart(canvasId, labels, values, labelText) {
         {
           label: labelText || "New workers",
           data: cleanRows.map((row) => row.value),
-          backgroundColor: "rgba(37, 99, 235, 0.8)",
-          borderColor: "rgba(37, 99, 235, 1)",
-          borderWidth: 1
+          backgroundColor: cleanRows.map(() => "rgba(255,255,255,0.8)"),
+          borderColor: cleanRows.map(() => "rgba(255,255,255,0.95)"),
+          borderWidth: 2,
+          hoverBackgroundColor: cleanRows.map(() => "rgba(255,255,255,1)"),
+          hoverBorderColor: cleanRows.map(() => "rgba(255,255,255,1)")
         }
       ]
     },
@@ -90,23 +115,30 @@ function renderBarChart(canvasId, labels, values, labelText) {
       scales: {
         xAxes: [
           {
+            gridLines: {
+              color: "rgba(255,255,255,0.08)"
+            },
             ticks: {
+              fontColor: "#ffffff",
+              fontStyle: "bold",
+              fontSize: 13,
               maxRotation: 45,
               minRotation: 45,
-              autoSkip: false,
-              fontColor: "#f3f4f6",
-              fontStyle: "bold",
-              fontSize: 12
+              autoSkip: false
             }
           }
         ],
         yAxes: [
           {
+            gridLines: {
+              color: "rgba(255,255,255,0.08)"
+            },
             ticks: {
               beginAtZero: true,
               min: 0,
-              fontColor: "#f3f4f6",
+              fontColor: "#ffffff",
               fontStyle: "bold",
+              fontSize: 13,
               callback: function (value) {
                 return Number(value).toLocaleString();
               }
@@ -138,18 +170,26 @@ async function init() {
     const opt1 = document.createElement("option");
     opt1.value = occupation;
     opt1.textContent = occupation;
+    opt1.style.color = "#ffffff";
+    opt1.style.backgroundColor = "#1f2937";
     sel1.appendChild(opt1);
 
     const opt2 = document.createElement("option");
     opt2.value = occupation;
     opt2.textContent = occupation;
+    opt2.style.color = "#ffffff";
+    opt2.style.backgroundColor = "#1f2937";
     sel2.appendChild(opt2);
   });
 
   sel1.selectedIndex = 0;
   sel2.selectedIndex = occs.length > 1 ? 1 : 0;
 
+  styleOccupationSelects();
+
   async function updatePanel(sel, prefix) {
+    styleOccupationSelects();
+
     const occ = sel.value;
 
     const newDetails = await loadOccupationData(occ, "total_new_workers");
@@ -215,8 +255,15 @@ async function init() {
     }
   }
 
-  sel1.addEventListener("change", () => updatePanel(sel1, "occ1"));
-  sel2.addEventListener("change", () => updatePanel(sel2, "occ2"));
+  sel1.addEventListener("change", () => {
+    styleOccupationSelects();
+    updatePanel(sel1, "occ1");
+  });
+
+  sel2.addEventListener("change", () => {
+    styleOccupationSelects();
+    updatePanel(sel2, "occ2");
+  });
 
   await updatePanel(sel1, "occ1");
   await updatePanel(sel2, "occ2");
