@@ -76,73 +76,60 @@
 <div class="container-scroller">
 
   <!-- SIDEBAR -->
-  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+ <nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+    <a class="sidebar-brand brand-logo text-white text-decoration-none fw-bold" href="index.html">VICDASH</a>
+    <a class="sidebar-brand brand-logo-mini text-white text-decoration-none fw-bold" href="index.html">VIC</a>
+  </div>
 
-    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+  <ul class="nav">
+    <li class="nav-item nav-category">
+      <span class="nav-link">Navigation</span>
+    </li>
 
-      <a
-        class="sidebar-brand brand-logo text-white text-decoration-none fw-bold"
-        href="index.html"
-      >
-        VICDASH
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="index.html">
+        <span class="menu-icon"><i class="mdi mdi-speedometer"></i></span>
+        <span class="menu-title">Overview</span>
       </a>
+    </li>
 
-      <a
-        class="sidebar-brand brand-logo-mini text-white text-decoration-none fw-bold"
-        href="index.html"
-      >
-        VIC
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="geographic.html">
+        <span class="menu-icon"><i class="mdi mdi-map-marker-radius"></i></span>
+        <span class="menu-title">Geographic Overview</span>
       </a>
+    </li>
 
-    </div>
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="industry.html">
+        <span class="menu-icon"><i class="mdi mdi-playlist-play"></i></span>
+        <span class="menu-title">Industry Overview</span>
+      </a>
+    </li>
 
-    <ul class="nav">
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="occupation.html">
+        <span class="menu-icon"><i class="mdi mdi-table-large"></i></span>
+        <span class="menu-title">Occupation Overview</span>
+      </a>
+    </li>
 
-      <li class="nav-item nav-category">
-        <span class="nav-link">
-          Navigation
-        </span>
-      </li>
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="sentiment.html">
+        <span class="menu-icon"><i class="mdi mdi-emoticon-outline"></i></span>
+        <span class="menu-title">Sentiment Analysis</span>
+      </a>
+    </li>
 
-      <li class="nav-item menu-items">
-
-        <a class="nav-link" href="index.html">
-
-          <span class="menu-icon">
-            <i class="mdi mdi-speedometer"></i>
-          </span>
-
-          <span class="menu-title">
-            Overview
-          </span>
-
-        </a>
-
-      </li>
-
-      <!-- TOPIC MODELLING TAB -->
-      <li class="nav-item menu-items active">
-
-        <a
-          class="nav-link active"
-          href="topic_modelling.html"
-        >
-
-          <span class="menu-icon">
-            <i class="mdi mdi-chart-bubble"></i>
-          </span>
-
-          <span class="menu-title">
-            Topic Modelling
-          </span>
-
-        </a>
-
-      </li>
-
-    </ul>
-
-  </nav>
+    <li class="nav-item menu-items active">
+      <a class="nav-link active" href="topic_modelling.html">
+        <span class="menu-icon"><i class="mdi mdi-chart-bubble"></i></span>
+        <span class="menu-title">Topic Modelling</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
   <!-- PAGE WRAPPER -->
   <div class="container-fluid page-body-wrapper">
